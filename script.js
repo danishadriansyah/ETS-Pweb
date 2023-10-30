@@ -1,30 +1,20 @@
-{ "rates": { "EURUSD": { "rate": 1.052216, "timestamp": 1697418604
-        },
-        "EURGBP": { "rate": 0.865748, "timestamp": 1697418604
-        },
-        "GBPUSD": { "rate": 1.215384, "timestamp": 1697418604
-        },
-        "USDJPY": { "rate": 149.479498, "timestamp": 1697418604
-        },
-        "USDCHF": { "rate": 0.9019, "timestamp": 1697418604
-        },
-        "USDCAD": { "rate": 1.364675, "timestamp": 1697418604
-        },
-        "USDZAR": { "rate": 18.99092, "timestamp": 1697418604
-        },
-        "AUDUSD": { "rate": 0.63109, "timestamp": 1697418604
-        },
-        "NZDUSD": { "rate": 0.591004, "timestamp": 1697418604
-        }
-    },
-    "code": 200
-}
+fetch('https://www.freeforexapi.com/api/live?pairs=EURUSD,EURGBP,GBPUSD,USDJPY,AUDUSD,USDCHF,NZDUSD,USDCAD,USDZAR')
+.then(response => {
+    return response.json();
+})
+.then(data => {
+    const rateData = data.rates;
 
-{
-  "success": false,
-  "error": {
-    "code": 101,
-    "type": "invalid_access_key",
-    "info": "You have not supplied a valid API Access Key. [Technical Support: support@apilayer.com]"
-  }
-}
+    console.log(rateData);
+
+    document.getElementById('EURUSD').innerHTML = rateData.EURUSD.rate;
+    document.getElementById('EURGBP').innerHTML = rateData.EURGBP.rate;
+    document.getElementById('GBPUSD').innerHTML = rateData.GBPUSD.rate;
+    document.getElementById('USDJPY').innerHTML = rateData.USDJPY.rate;
+    document.getElementById('AUDUSD').innerHTML = rateData.AUDUSD.rate;
+    document.getElementById('USDCHF').innerHTML = rateData.USDCHF.rate;
+    document.getElementById('NZDUSD').innerHTML = rateData.NZDUSD.rate;
+    document.getElementById('USDCAD').innerHTML = rateData.USDCAD.rate;
+    document.getElementById('USDZAR').innerHTML = rateData.USDZAR.rate;
+    
+})
